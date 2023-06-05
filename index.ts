@@ -1,15 +1,22 @@
-function test(value: TemplateStringsArray) {
-    return new String(value)
+import { html } from "hono/html";
+
+const test = (strings: TemplateStringsArray, ...values: unknown[]) => {
+	console.log(strings)
+	console.log(values)
 }
 
-// works
-test`ok`
-// @ts-ignore
-test(`
-    ok
-`)
-
-// below lines will crash bun
 test`
-    ok
+	<head>
+		<meta charset="UTF-8" />
+		<title>${"meow123"}</title>
+		<link rel="stylesheet" href="/css/style.css" />
+	</head>
 `
+
+console.log(html`
+	<head>
+		<meta charset="UTF-8" />
+		<title>${"meow123"}</title>
+		<link rel="stylesheet" href="/css/style.css" />
+	</head>
+`)
